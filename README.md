@@ -2,19 +2,19 @@
 
 ## Problem Statement
 
-In an asynchronous execution model, like JavaScript has in the browser,
+In an asynchronous execution model, like JavaScript uses in the browser,
 handling asynchronous work, responding to success, and responding to failure
 could create a lot of twisty, hard-to-read code.
 
-However, in ES2015, `Promise`s were introduced which allowed us to code for
+However, ES2015 introduced `Promise`s, which allowed us to code for
 uncertainty _expressively_. In this lesson we'll see how `Promise`s work and
 how they secretly make `fetch()` so clean.
 
 ## Objectives
 
 1. Demonstrate pre-`fetch()` data fetch code
-2. Demonstrate capturing the Promise returned by `fetch()`
-3. The Hidden `Promise`s of `fetch()`
+2. Demonstrate capturing the `Promise` returned by `fetch()`
+3. The hidden `Promise`s of `fetch()`
 4. Handling failure, or `rejected` `Promise`s
 
 ## Demonstrate Pre-`fetch()` Data Fetch Code
@@ -41,7 +41,7 @@ xhr.addEventListener("error", () => {
 xhr.send();
 ```
 
-## Demonstrate Capturing The Promise Returned By `fetch()`
+## Demonstrate Capturing the Promise Returned by `fetch()`
 
 Use a DevTools console inside an incognito window to see the following:
 
@@ -93,7 +93,7 @@ string that's _not_ JSON? Again, **if** that conversion can be done it is
 wrapped in a `Promise` and is available to the `then()` in Point 3. Inside the
 callback at Point 3 we know we have valid JSON that we can proceed to use.
 
-## Handling failure, or `rejected` `Promise`s
+## Handling Failure, or `rejected` `Promise`s
 
 Let's try this code in the DevTools console inside an incognito window:
 
@@ -142,11 +142,11 @@ Oh no! TypeError: Failed to fetch
 Ruh-roh! Couldn't convert the json: TypeError: Cannot read property 'number' of undefined
 ```
 
-This makes sense because the first `Promise` failed, all other `Promise`s that
+This makes sense. Because the first `Promise` failed, all other `Promise`s that
 were contingent on its success _also_ need to fail. We humans understand the
 risk associated with building our future on too many what-ifs:
 
-> IF I make it in Hollywood, I will get a big house or else I will move back
+> If I make it in Hollywood, I will get a big house or else I will move back
 > home; and if I have a big house in that big house I will have a pony, but if
 > not I will not need a stable-hand.
 
@@ -162,6 +162,5 @@ inherent in certain type of work. They are part of the internals of the
 ## Resources
 
 * [HTML 5 Rocks on `Promise`][h5r]
-
 
 [h5r]: http://www.html5rocks.com/en/tutorials/es6/promises/
