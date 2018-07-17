@@ -41,6 +41,26 @@ xhr.addEventListener("error", () => {
 xhr.send();
 ```
 
+There are a number of weaknesses here that really bothered JavaScript
+developers. Let's list two obvious pain points:
+
+* The amount of setup for each data source is pretty big. It was pretty common
+  to find developers writing functions that abstracted this setup "boilerplate"
+  code:
+  `let ajaxFactory = (source, successFn, failFn) => { let xhr = new XMLHttpRequest(); ...; return xhr }`
+* If you had an XHR request that depended on the success of another XHR,
+  the code got really nasty between nested callbacks. You could imagine some
+  web-kiosk code that said "Ask the US Government's atomic clock for the day 
+  of the week (Request 1) AND based on the day of the week, request that day's
+  menu for lunch to put on the cafeteria's monitor." What happens if one of those
+  requests time out? How do you _expressively_ write code that's not a huge knot
+  to read / debug / maintain? It's hard
+  
+Taking inspiration from the languages of Lisp and Prolog, JavaScript developers
+wrote their own `Promise`-like implementations in libraries like jQuery, Bluebird,
+and `Deferred.js`. It was clear that the community needed a better, standard, way
+to capture and work with code that operated in an uncertain world.
+
 ## Demonstrate Capturing the Promise Returned by `fetch()`
 
 Use a DevTools console inside an incognito window to see the following:
